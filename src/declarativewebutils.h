@@ -29,6 +29,7 @@ class DeclarativeWebUtils : public QObject
     Q_PROPERTY(QString picturesDir READ picturesDir CONSTANT FINAL)
     Q_PROPERTY(bool firstUseDone READ firstUseDone WRITE setFirstUseDone NOTIFY firstUseDoneChanged)
     Q_PROPERTY(bool debugMode READ debugMode CONSTANT FINAL)
+    Q_PROPERTY(qreal cssPixelRatio READ cssPixelRatio NOTIFY cssPixelRatioChanged)
 
 public:
     static DeclarativeWebUtils *instance();
@@ -38,6 +39,7 @@ public:
     bool firstUseDone() const;
     void setFirstUseDone(bool firstUseDone);
     bool debugMode() const;
+    qreal cssPixelRatio() const;
 
     Q_INVOKABLE QUrl getFaviconForUrl(QUrl url);
     Q_INVOKABLE int getLightness(QColor color) const;
@@ -54,6 +56,7 @@ signals:
     void openUrlRequested(QString url);
     void firstUseDoneChanged();
     void dumpMemoryInfo(QString fileName);
+    void cssPixelRatioChanged();
 
 private slots:
     void updateWebEngineSettings();
